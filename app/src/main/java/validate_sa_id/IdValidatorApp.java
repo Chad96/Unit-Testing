@@ -1,37 +1,31 @@
-package validate_sa_id; // Defines the package name for organizational purposes
+package validate_sa_id;
 
-import java.util.Scanner; // Imports the Scanner class for user input
+import java.util.Scanner;
 
 public class IdValidatorApp {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in); // Creates a Scanner object to read input from the console
-        System.out.println("South African ID Validator"); // Welcome message
-        System.out.println("Enter a 13-digit ID number (or 'quit' to exit):"); // Prompt message for user input
+        Scanner scanner = new Scanner(System.in); // Initialize scanner for user input
+        System.out.println("South African ID Validator");
+        System.out.println("Enter a 13-digit ID number (or 'quit' to exit):");
 
-        // Infinite loop to continuously prompt the user until they decide to quit
         while (true) {
-            String input = scanner.nextLine().trim(); // Reads the input from user and trims whitespace
+            String input = scanner.nextLine().trim();
 
-            // Check if the user wants to exit
-            if (input.equalsIgnoreCase("quit")) {
-                System.out.println("Exiting validator."); // Exit message
-                break; // Breaks the loop and ends the program
+            if (input.equalsIgnoreCase("quit")) { // Exit condition
+                System.out.println("Exiting validator.");
+                break;
             }
 
-            // Check if the user input is empty
-            if (input.isEmpty()) {
-                System.out.println("Error: Please enter an ID number."); // Error message for empty input
-                continue; // Continues to the next iteration without validating
+            if (input.isEmpty()) { // Check for empty input
+                System.out.println("Error: Please enter an ID number.");
+                continue;
             }
 
-            // Calls a method from another class to validate the ID number
-            boolean isValid = ValidateSald.isIdNumberValid(input); // Replace 'ValidateSald' with correct class name if there's a typo
-            // Displays whether the entered ID is valid or invalid
+            boolean isValid = ValidateSald.isIdNumberValid(input); // Validate ID using external method
             System.out.println("ID " + input + " is " + (isValid ? "valid" : "invalid"));
-            // Prompts the user for another input
             System.out.println("Enter another ID number (or 'quit' to exit):");
         }
 
-        scanner.close(); // Closes the scanner to release system resources
+        scanner.close(); // Clean up scanner resource
     }
 }
